@@ -1,0 +1,11 @@
+# Use the official PostgreSQL image as the base image
+FROM postgres:11.2-alpine
+
+# Set environment variables for the database
+# These are optional but can be useful for setting up the database
+ENV POSTGRES_USER=errick
+ENV POSTGRES_PASSWORD=zxPaZx2LvYu
+ENV POSTGRES_DB=twoge_k8s_database
+
+# Expose the port PostgreSQL will run on
+EXPOSE 5432

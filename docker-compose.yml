@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  postgres:
+    build:
+      dockerfile: Dockerfile.db
+    environment:
+      POSTGRES_USER: errick
+      POSTGRES_PASSWORD: zxPaZx2LvYu
+      POSTGRES_DB: twoge_k8s_database
+      PGUSER: errick
+      PGDATABASE: twoge_k8s_database
+    image: errickbd/twoge_k8s_db_image:latest
+    container_name: twoge_k8s_db_container
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-U", "errick", "-d", "twoge_k8s_database"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s
+    networks:
+      - twoge-k8s-network
+
+  app:
+    build:
+      dockerfile: Dockerfile.app
+    environment:
+      DATABASE_URL: postgres://errick:zxPaZx2LvYu@twoge_k8s_db_container:5432/twoge_k8s_database
+    image: errickbd/twoge_k8s_app_image:latest
+    container_name: twoge_k8s_app_container
+    ports:
+      - "80:80"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:80/health || exit 1"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s
+    networks:
+      - twoge-k8s-network
+
+volumes:
+  pgdata:
+
+networks:
+  twoge-k8s-network:

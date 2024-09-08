@@ -30,6 +30,10 @@ with app.app_context():
 def index():
     return render_template('index.html')
 
+@app.route('/health')
+def health_check():
+    return ('Can be reached, and is healthy.')
+
 @app.route('/posts', methods=['GET', 'POST'])
 def posts():
 
