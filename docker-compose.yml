@@ -4,12 +4,8 @@ services:
   postgres:
     build:
       dockerfile: Dockerfile.db
-    environment:
-      POSTGRES_USER: errick
-      POSTGRES_PASSWORD: zxPaZx2LvYu
-      POSTGRES_DB: twoge_k8s_database
-      PGUSER: errick
-      PGDATABASE: twoge_k8s_database
+    env_file:
+      - .env
     image: errickbd/twoge_k8s_db_image:latest
     container_name: twoge_k8s_db_container
     ports:
@@ -28,8 +24,8 @@ services:
   app:
     build:
       dockerfile: Dockerfile.app
-    environment:
-      DATABASE_URL: postgres://errick:zxPaZx2LvYu@twoge_k8s_db_container:5432/twoge_k8s_database
+    env_file:
+      - .env
     image: errickbd/twoge_k8s_app_image:latest
     container_name: twoge_k8s_app_container
     ports:

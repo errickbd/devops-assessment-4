@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: twoge-app
+  namespace: errick
+  labels:
+    app: twoge-app
+spec:
+  selector:
+    matchLabels:
+      app: twoge-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: twoge-app
+    spec:
+      containers:
+        - name: twoge-app-container
+          image: errickbd/twoge_k8s_app_image:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: TWOGE_DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: postgres_db
+            - name: TWOGE_DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: postgres_user
+            - name: TWOGE_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: postgres_password
+            - name: TWOGE_DB_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-configmap
+                  key: database_url
+            - name: TWOGE_DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-configmap
+                  key: database_port
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 80
+            initialDelaySeconds: 1
+            periodSeconds: 2
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 1
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
