@@ -4,7 +4,7 @@ metadata:
   name: twoge-app-service
   namespace: errick
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
   - port: 80 #the port the service listens on
     targetPort: 80 #forward traffic to this port 

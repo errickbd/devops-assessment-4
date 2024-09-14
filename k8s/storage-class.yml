@@ -3,7 +3,7 @@ kind: StorageClass
 metadata:
   name: ebs-sc
   # namespace: errick
-# provisioner: ebs.csi.aws.com
-provisioner: k8s.io/minikube-hostpath 
-# volumeBindingMode: WaitForFirstConsumer
-# allowVolumeExpansion: true
+provisioner: ebs.csi.aws.com
+# provisioner: k8s.io/minikube-hostpath 
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
