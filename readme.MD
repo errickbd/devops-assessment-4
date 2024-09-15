@@ -90,7 +90,7 @@ To deploy to eks:
 
 
 16. Set which profile to target on aws cli
-	- `export AWS_PROFILE=cpbravo-errick`
+	- `export AWS_PROFILE=<profile>`
 
 
 17. Configure local kubernetes to talk to eks
