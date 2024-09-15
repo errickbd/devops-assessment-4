@@ -3,10 +3,13 @@
 
 For this project we will be deploying an application with a database and persistent volume first on minikube, and then onto an EKS cluster on AWS. The diagram above shows our general infrastructure and the text below are the steps we will need to take in order to successfuly deploy our application.
 
-First we will need to create our dockerfiles for app and db.
+1. Create our dockerfiles for app and db.
 
 
-Next create an .env file, and then create a docker-compose file following that.
+2. Create an .env file
+
+
+3. Create a docker-compose file following that.
 
 
 
