@@ -1,48 +1,97 @@
-# **Twoge**
+	
+	![Diagram](https://github.com/errickbd/devops-assessment-4/blob/e702f7c76422751cb3684e4f05032daed750ace8/images/devops-4-diagram.png)
 
-<h1 align="center">
-	<img
-		width="500"
-		alt="Project Twoge"
-		src="./static/img/twoge-cover.png">
-</h1>
 
-Twoge is a social media platform dedicated solely to tweets about Dodge. This application is built using Flask, SQLAlchemy, and PostgreSQL.
 
-<h1 align="center">
-	<img
-		width="100"
-		alt="Project Twoge"
-		src="./static/img/twoge.png">
-</h1>
+	- Create dockerfiles for app and db
 
-## **Prerequisites**
+	- Create .env file
 
-Before you can launch Twoge, you will need to have the following software installed on your system:
+	- Create docker compose file
 
-- Python 3
-- Flask
-- SQLAlchemy
-- PostgreSQL
+	- Run docker compose
+		○ `docker-compose build --no-cache`
 
-## **Getting started**
+	- Push Docker images to Docker hub repo
+		○ `docker push`
 
-To get started with Twoge, follow these steps:
+	- Create all files
 
-1. Clone the repository to your local machine.
-2. Create a virtual environment for the project and activate it.
-3. Install the required packages using **`pip install -r requirements.txt`**.
-4. Create a PostgreSQL database for the application.
-5. Set the **`DATABASE_URL`** environment variable to the URL of your PostgreSQL database.
-| A sample DATABASE_URI looks like this - `postgresql://username:password@localhost/database_name`
-6. Run the application using **`python app.py`**.
-7. Navigate to **`http://localhost:5000`** in your web browser to use Twoge.
+		○ Create db deployment file
+	
+		○ Create db service file
+	
+		○ Create secrets.yml file
+	
+		○ Create app deployment file
+	
+		○ Create app service file
+	
+		○ Create configmap.yml file
+	
+		○ Create namespace.yml file
+	
+		○ Create resource-quota.yml file
 
-## **Table attributes**
+	- Add namespace metadata to all files
 
-Twoge has a single table in its database, which stores information about each tweet. The table has the following attributes:
+	- 'minikube start'
 
-- **`date_posted`**: The date and time when the tweet was posted.
-- **`author`**: The user who posted the tweet.
-- **`title`**: The title of the tweet.
-- **`content`**: The content of the tweet.
+	- Build namespace
+		○ 'kubectl apply -f k8s/namespace.yml' 
+
+	- Build all resources
+		○ 'kubectl apply -f k8s/.'
+
+	- Check all resources were built within the namespace and pods are ready
+		○ 'kubectl get all -n <namespace>'
+
+	- To access the app if running on minikube. You have to create a local tunnel
+		○ 'minikube service twoge-app-service -n <namespace>'
+		○ Paste URL onto the browser
+
+	
+	
+	![Diagram](https://github.com/errickbd/devops-assessment-4/blob/main/images/Minikube%20Deployment%2001.png)
+
+	
+	![Home Page](https://github.com/errickbd/devops-assessment-4/blob/main/images/Minikube%20Deployment%2002.png)	
+	
+	
+	![Posts Page](https://github.com/errickbd/devops-assessment-4/blob/main/images/Minikube%20Deployment%2003.png)
+
+
+
+	- Create storage class file
+
+	- Create PVC file
+
+	- Add volumes configuration to Database deployment file
+
+
+To deploy to eks:
+	- Set which profile to target on aws cli
+		○ 'export AWS_PROFILE=cpbravo-errick'
+
+
+	- Configure local kubernetes to talk to eks
+		○ 'aws eks --region us-east-1 update-kubeconfig --name class-eks-cluster'
+
+	- Verify current context in k8s configuration
+		○ 'kubectl config current-context'
+
+	- Set current default namespace
+		○ 'kubectl config set-context --current --namespace=errick'
+
+	- Displays config details
+		○ 'kubectl config view --minify'
+		
+	- Run all files
+		○ 'kubectl apply -f . --namespace=errick'
+
+
+	- Check on browser through localhost
+		○ Localhost: 'kubectl port-forward svc/twoge-app-service 8080:80 -n errick'
+		○ Loadbalancer: 'kubectl get svc -n errick'
+		
+Check if volume persistence works by deleting pod, and seeing if the data is there on the new pod
