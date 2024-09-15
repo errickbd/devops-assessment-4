@@ -41,23 +41,23 @@
 7. Add namespace metadata to all files
 
 
-8. 'minikube start'
+8. `minikube start`
 
 
 9. Build namespace
-	- 'kubectl apply -f k8s/namespace.yml' 
+	- `kubectl apply -f k8s/namespace.yml`
 
 
 10. Build all resources
-	- 'kubectl apply -f k8s/.'
+	- `kubectl apply -f k8s/.`
 
 
 11. Check all resources were built within the namespace and pods are ready
-	- 'kubectl get all -n <namespace>'
+	- `kubectl get all -n <namespace>`
 
 
 12. To access the app if running on minikube. You have to create a local tunnel
-	- 'minikube service twoge-app-service -n <namespace>'
+	- `minikube service twoge-app-service -n <namespace>`
 	- Paste URL onto the browser
 
 
@@ -88,23 +88,23 @@ To deploy to eks:
 
 
 16. Set which profile to target on aws cli
-	- 'export AWS_PROFILE=cpbravo-errick'
+	- `export AWS_PROFILE=cpbravo-errick`
 
 
 17. Configure local kubernetes to talk to eks
-	- 'aws eks --region us-east-1 update-kubeconfig --name class-eks-cluster'
+	- `aws eks --region us-east-1 update-kubeconfig --name class-eks-cluster`
 
 18. Verify current context in k8s configuration
-	- 'kubectl config current-context'
+	- `kubectl config current-context`
 
 19. Set current default namespace
-	- 'kubectl config set-context --current --namespace=errick'
+	- `kubectl config set-context --current --namespace=errick`
 
 20. Displays config details
-	- 'kubectl config view --minify'
+	- `kubectl config view --minify`
 		
 21. Run all files
-	- 'kubectl apply -f . --namespace=errick'
+	- `kubectl apply -f . --namespace=errick`
 
 
 22.Check on browser through localhost
