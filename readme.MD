@@ -41,7 +41,8 @@
 7. Add namespace metadata to all files
 
 
-8. `minikube start`
+8. Start minikube
+	- `minikube start`
 
 
 9. Build namespace
