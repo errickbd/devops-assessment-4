@@ -21,7 +21,7 @@ For this project we will be deploying an application with a database and persist
 	- `docker push`
 
 
-6. Create all files
+6. Create all k8s files
 
 	- Create db deployment file
 	
