@@ -1,5 +1,5 @@
 # Use the official PostgreSQL image as the base image
-FROM postgres:11.2-alpine
+FROM postgres:16.4-alpine3.20
 
 # Set environment variables for the database
 # These are optional but can be useful for setting up the database

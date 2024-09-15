@@ -33,6 +33,8 @@ spec:
                 secretKeyRef:
                   name: postgres-secret
                   key: postgres_password
+            - name: PGDATA  # This will tell PostgreSQL to use the subdirectory
+              value: /var/lib/postgresql/pgdata
           ports:
             - containerPort: 5432
           readinessProbe:
@@ -44,14 +46,14 @@ spec:
             failureThreshold: 3
           resources:
             requests:
-              cpu: "500m"         # 0.5 core
-              memory: "512Mi"     # 512 MiB
+              cpu: "100m"         # 0.5 core
+              memory: "100Mi"     # 512 MiB
             limits:
-              cpu: "1"            # 1 core
-              memory: "1Gi"       # 1 GiB
+              cpu: "200m"            # 1 core
+              memory: "200Mi"       # 1 GiB
           volumeMounts:
             - name: postgres-data
-              mountPath: /var/lib/postgresql/data
+              mountPath: /var/lib/postgresql
       volumes:
         - name: postgres-data
           persistentVolumeClaim:
