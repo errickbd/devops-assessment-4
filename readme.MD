@@ -20,7 +20,7 @@ For this project we will be deploying an application with a database and persist
 
 
 5. Push Docker images to Docker hub repo
-	- `docker push`
+	- `docker push <tag>`
 
 
 6. Create all k8s files
