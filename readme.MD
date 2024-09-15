@@ -1,64 +1,64 @@
+<img width="1249" alt="Screenshot 2024-07-16 at 9 43 12 AM" src="https://github.com/errickbd/devops-assessment-4/blob/e702f7c76422751cb3684e4f05032daed750ace8/images/devops-4-diagram.png">	
+
+
+
+
+1. Create dockerfiles for app and db
+
+2. Create .env file
+
+3. Create docker compose file
+
+4. Run docker compose
+	○ `docker-compose build --no-cache`
+
+5. Push Docker images to Docker hub repo
+	○ `docker push`
+
+6. Create all files
+
+	○ Create db deployment file
 	
-	![Diagram](https://github.com/errickbd/devops-assessment-4/blob/e702f7c76422751cb3684e4f05032daed750ace8/images/devops-4-diagram.png)
-
-
-
-	- Create dockerfiles for app and db
-
-	- Create .env file
-
-	- Create docker compose file
-
-	- Run docker compose
-		○ `docker-compose build --no-cache`
-
-	- Push Docker images to Docker hub repo
-		○ `docker push`
-
-	- Create all files
-
-		○ Create db deployment file
+	○ Create db service file
 	
-		○ Create db service file
+	○ Create secrets.yml file
 	
-		○ Create secrets.yml file
+	○ Create app deployment file
 	
-		○ Create app deployment file
+	○ Create app service file
 	
-		○ Create app service file
+	○ Create configmap.yml file
 	
-		○ Create configmap.yml file
+	○ Create namespace.yml file
 	
-		○ Create namespace.yml file
-	
-		○ Create resource-quota.yml file
+	○ Create resource-quota.yml file
 
-	- Add namespace metadata to all files
+7. Add namespace metadata to all files
 
-	- 'minikube start'
+8. 'minikube start'
 
-	- Build namespace
-		○ 'kubectl apply -f k8s/namespace.yml' 
+9. Build namespace
+	○ 'kubectl apply -f k8s/namespace.yml' 
 
-	- Build all resources
-		○ 'kubectl apply -f k8s/.'
+10. Build all resources
+	○ 'kubectl apply -f k8s/.'
 
-	- Check all resources were built within the namespace and pods are ready
-		○ 'kubectl get all -n <namespace>'
+11. Check all resources were built within the namespace and pods are ready
+	○ 'kubectl get all -n <namespace>'
 
-	- To access the app if running on minikube. You have to create a local tunnel
-		○ 'minikube service twoge-app-service -n <namespace>'
-		○ Paste URL onto the browser
+12. To access the app if running on minikube. You have to create a local tunnel
+	○ 'minikube service twoge-app-service -n <namespace>'
+	○ Paste URL onto the browser
+
+
+<img width="1249" alt="Screenshot 2024-07-16 at 9 43 12 AM" src="https://github.com/errickbd/devops-assessment-4/blob/main/images/Minikube%20Deployment%2001.png">
+
+
+<img width="1249" alt="Screenshot 2024-07-16 at 9 43 12 AM" src="https://github.com/errickbd/devops-assessment-4/blob/main/images/Minikube%20Deployment%2002.png">	
 
 	
-	
-	![Diagram](https://github.com/errickbd/devops-assessment-4/blob/main/images/Minikube%20Deployment%2001.png)
+<img width="1249" alt="Screenshot 2024-07-16 at 9 43 12 AM" src="https://github.com/errickbd/devops-assessment-4/blob/main/images/Minikube%20Deployment%2003.png">	
 
-	
-	![Home Page](https://github.com/errickbd/devops-assessment-4/blob/main/images/Minikube%20Deployment%2002.png)	
-	
-	
-	![Posts Page](https://github.com/errickbd/devops-assessment-4/blob/main/images/Minikube%20Deployment%2003.png)
 
 
 
