@@ -79,10 +79,10 @@ For this project we will be deploying an application with a database and persist
 
 
 
-13. Create storage class file
+13. Create storage class k8s file
 
 
-14. Create PVC file
+14. Create PVC k8s file
 
 
 15. Add volumes configuration to Database deployment file
